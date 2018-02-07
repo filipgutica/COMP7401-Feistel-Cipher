@@ -32,8 +32,6 @@ This is our initial plan of approach to writing the application. As we continued
 
 Additionally we are assuming that efficiency and speed are not top priority so we will be using array which will cause additional data. The garbage collector should handle the removal of the data but this is a statement that there are better ways to execute this code.
 
-### Encryption
-
 Assumptions
 
 * 8 rounds
@@ -50,6 +48,7 @@ Formulas:
 
 3. Ri = L[i-1] XOR f(R[i-1], ki) 
 
+### Encryption
 
     Function Encrypt(Plaintext, key)
 
