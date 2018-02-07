@@ -12,7 +12,9 @@ We will be limiting our development to the following:
 
 * Subkey generation
 
-* Being able to encrypt and decrypt both ECB and CBC
+* ECB and CBC modes
+
+* 64 bit blocks (8 bytes)
 
 # Action Plan
 
@@ -26,20 +28,6 @@ Development Plans are as follows:
 
     1. Please note that our actual code does differ from this but this was the initial approach to the application
 
-## Pseudo Code
-
-This is our initial plan of approach to writing the application. As we continued our development it resulted in slight changes from this to better follow along with the code.
-
-Additionally we are assuming that efficiency and speed are not top priority so we will be using array which will cause additional data. The garbage collector should handle the removal of the data but this is a statement that there are better ways to execute this code.
-
-Assumptions
-
-* 8 rounds
-
-* 64 bit blocks (8 bytes)
-
-* Use same key for each round
-
 Formulas: 
 
 1. f(x, k) = [(2i * k)^x] % ( 2^32 -1)
@@ -48,69 +36,6 @@ Formulas:
 
 3. Ri = L[i-1] XOR f(R[i-1], ki) 
 
-### Encryption
-
-    Function Encrypt(Plaintext, key)
-
-        Initialize empty string Ciphertext
-
-        For every 64 bit block of the plaintext
-
-          Initialize array L[8]
-
-          Initialize array R[8]
-
-          Set L[0] to first 32 bits of plaintext block
-
-          Set R[0] to second 32 bits of plaintext block
-
-          For i = 1 to max rounds
-
-          L[i] = R[ i- 1]
-
-          R[i] = L[i - 1] XOR Scramble(R[i - 1], i, key)
-
-        // Add together the final results of each L and R (Lfin and Rfin)
-
-        //Append to the Ciphertext
-
-        Ciphertext += (L[8] + R[8])
-
-        Return Ciphertext
-
-    Function Scramble(x, i, k)
-
-        Return ((xi * k)^i) % (2^32-1)	
-
-### Decryption
-
-    Function Decrypt(Ciphertext, Key)
-
-      Initialize empty string
-
-      For every 64 bit block of the ciphertext
-
-        Array L[8]
-
-        Array R[8]
-
-        L[0] first 32 bit
-
-        R[0] second 32 bit
-
-        For 8 iteration
-
-          R[i+1] = L[i]
-
-          L[i+1] = R[i] Scramble(L[i ], i, key)
-
-        Ciphertext = L[8] + R[8]
-
-      Return ciphertext
-
-    Function Scramble(x, i, k)
-
-      Return ((xi * k)^i) % (2^32-1)
 
 # Instructions
 
