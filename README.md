@@ -8,11 +8,11 @@ We will be limiting our development to the following:
 
 * Python as the development language
 
-* 8 Rounds of the feistel cipher
+* N Rounds of the feistel cipher
 
-* Using the same key for all the rounds
+* Subkey generation
 
-* Being able to encrypt and decrypt a few paragraphs of plain text
+* Being able to encrypt and decrypt both ECB and CBC
 
 # Action Plan
 
