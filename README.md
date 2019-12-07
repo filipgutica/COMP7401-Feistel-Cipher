@@ -39,7 +39,7 @@ Formulas:
 
 # Instructions
 
-We have two modules: feistel.py and feistel-decrypt.py
+Feistel.py can be used for decrypting and encrypting by setting the flag -d (decrypt) or -e (encrypt)
 
 Feistel.py is run using python version 2. 
 
